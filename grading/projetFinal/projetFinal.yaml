@@ -1,0 +1,159 @@
+- Makefile: 5           # max 5,
+- imgStore.h: # NE PAS REMPLIR CETTE LIGNE
+  - structures de données: # NE PAS REMPLIR CETTE LIGNE
+      MAX_MAX_FILES: 1      # max 1,
+      imgst_header: 3     # max 3,
+      imgst_metadata: 3.5     # max 3.5,
+      imgst_file: 2         # max 2,
+  - fonctions: # NE PAS REMPLIR CETTE LIGNE
+      print_header: 1        # max 1,
+      print_metadata: 0.5      # max 0.5,
+      do_list: 1             # max 1,
+      do_create: 1           # max 1,
+      do_delete: 1           # max 1,
+      do_read: 1             # max 1,
+      do_insert: 1           # max 1,
+      resolution_atoi: 0.5     # max 0.5,
+- tools.c: # NE PAS REMPLIR CETTE LIGNE
+  - print_X: # NE PAS REMPLIR CETTE LIGNE
+      print_header: 1         # max 1,
+      print_metadata: 1       # max 1,
+  - do_open: # NE PAS REMPLIR CETTE LIGNE
+     tests arguments: 1              # max 1,
+     open + test erreur: 2           # max 2,
+     read header + test erreur: 2    # max 2,
+     alloc. dyn. + test: 2           # max 2,
+     read metadata + test erreur: 2  # max 2,
+  - do_close: 2.5                      # max 2.5,
+  - resolution_atoi: 2               # max 2,
+- imgst_list.c: # NE PAS REMPLIR CETTE LIGNE
+    affichage du header: 0.5        # max 0.5,
+    cas vide: 0.5                   # max 0.5,
+    parcours (boucle): 0.5          # max 0.5,
+    test is_valid: 1              # max 1,
+    print_metadata: 0.5             # max 0.5,
+- imgst_create.c: # NE PAS REMPLIR CETTE LIGNE
+    initialisation de version: 0.5  # max 0.5,
+    initialisation de num_file: 0.5 # max 0.5,
+    alloc dyn. metadat: 1.5         # max 1.5,
+    init champs is_valid: 1.5       # max 1.5,
+    open: 0.5                       # max 0.5,
+    test erreur open: 1.5           # max 1.5,
+    write header: 1.5               # max 1.5,
+    write metadata: 1.5             # max 1.5,
+    affichage bonne valeur: 0.5     # max 0.5,
+    gestions des erreurs: 1.5       # max 1.5,
+- imgst_delete.c: # NE PAS REMPLIR CETTE LIGNE
+    optimisation base vide: 1  # max 1,
+    recherche: 2               # max 2,
+    récriture metadata: 2      # max 2,
+    correction du header: 1.5    # max 1.5,
+    récriture du header: 2     # max 2,
+    gestion erreurs: 1.5         # max 1.5,
+- image_content.h: 3       # max 3,
+- image_content.c: # NE PAS REMPLIR CETTE LIGNE
+  - shrink_value: 1.5     # max 1.5,
+  - lazily_resize: 5.5    # max 5.5,
+  - create_resized_img: # NE PAS REMPLIR CETTE LIGNE
+     modularisation: 1     # max 1,
+     lecture: 3            # max 3,
+     vips load: 2          # max 2,
+     vips resize+save: 5   # max 5,
+     écriture: 3           # max 3,
+     update: 2             # max 2,
+     libérations: 2        # max 2,
+  - get_resolution : 5.5   # max 5.5,
+- imgStoreMgr.c: # NE PAS REMPLIR CETTE LIGNE
+  - projet01: # NE PAS REMPLIR CETTE LIGNE
+      help: 0.5                   # max 0.5,
+      do_list_cmd: 1.25            # max 1.25,
+      do_create_cmd: 5          # max 5,
+      do_delete_cmd: 2          # max 2,
+      VIPS init + shutdown: 1   # max 1,
+  - arguments: # NE PAS REMPLIR CETTE LIGNE
+      type command: 1                 # max 1,
+      struct command_mapping: 1       # max 1,
+      default values: 0.5               # max 0.5,
+      parsing args dans main(): 2.5     # max 2.5,
+  - do_read_cmd: # NE PAS REMPLIR CETTE LIGNE
+      modularisation: 1            # max 1,
+      création du nom: 1.5           # max 1.5,
+      écriture disque image: 2.5     # max 2.5,
+      core: 5                      # max 5,
+  - do_insert_cmd: # NE PAS REMPLIR CETTE LIGNE
+      modularisation: 1              # max 1,
+      lecture disque image: 5        # max 5,
+      core: 2.5                        # max 2.5,
+- dedup.h: 3                   # max 3,
+- dedup.c: # NE PAS REMPLIR CETTE LIGNE
+    compare SHA: 1          # max 1,
+    dedup: 7.5                # max 7.5,
+- imgst_insert.c: # NE PAS REMPLIR CETTE LIGNE
+    optimisation base pleine: 0.5    # max 0.5,
+    recherche place vide: 2        # max 2,
+    gestion dedup : 2              # max 2,
+    écriture image sur disque: 2.5   # max 2.5,
+    mise à jour metadata: 2.5        # max 2.5,
+    récriture du header: 1.5         # max 1.5,
+    gestion erreurs: 1.5             # max 1.5,
+- imgst_read.c: # NE PAS REMPLIR CETTE LIGNE
+    optimisation base vide: 1        # max 1,
+    recherche: 2                     # max 2,
+    gestion lazy resize: 2           # max 2,
+    lecture image depuis disque: 2.5   # max 2.5,
+    gestion erreurs: 1.5               # max 1.5,
+- overall: # NE PAS REMPLIR CETTE LIGNE
+    README:                      2 # max 4, minimum acceptable README
+    make webserver:              3 # max 3, 
+- imgst_list.c: # NE PAS REMPLIR CETTE LIGNE
+    switch-cases:                2 # max 2, 
+    JSON:                        9 # max 10, missing error check if json_string representation was NULL, undefined behaviour after that
+    error (default case):        2 # max 2, 
+- imgStore.h: # NE PAS REMPLIR CETTE LIGNE
+    enum do_list_mode:        1.5  # max 2, missing field for size of enum, complicates looping over it or checking valid entry
+    prototype update:            1 # max 1, 
+- imgStore_server.c: # NE PAS REMPLIR CETTE LIGNE
+    - Doxygen header:          0.5 # max 0.5, 
+    - mg_error_msg:              2 # max 2, 
+    - handle_list_call:          4 # max 5, missing error check if do_list returns NULL
+    - handle_read_call: # NE PAS REMPLIR CETTE LIGNE
+        arguments parsing:         5 # max 5, 
+        resolution convertion:     2 # max 2, 
+        read() call:               3 # max 3, 
+        reply:                   4.5 # max 5, missing \r\n after appending to the socket buffer
+    - handle_insert_call:  # NE PAS REMPLIR CETTE LIGNE
+        chunks uploading:          2 # max 2, 
+        arguments parsing:         5 # max 5, 
+        open (inc. filename):    2.5 # max 2.5, 
+        (read and) insert:         4 # max 5, missing check on `fread` to verify it replaced bytes
+        reply:                   2.5 # max 2.5, 
+    - handle_delete_call:        5 # max 5, 
+    - event_handler:             5 # max 5, 
+    - server_startup:          2.5 # max 2.5, 
+    - server_shutdown:         2.5 # max 2.5, 
+    - main():                    5 # max 5, 
+    - modularisation:            0 # max 2, no tool funcs created, many opportunities missed (e.g., variable parsing)
+- imgStoreMgr.c: # NE PAS REMPLIR CETTE LIGNE
+    add gc command:          0.5  # max 0.5, 
+    do_gc_cmd:               1.5  # max 1.5, 
+    patch do_list_cmd:       0.5  # max 0.5, 
+    patch help:              0.5  # max 0.5, 
+- imgst_gbcollect.c: # NE PAS REMPLIR CETTE LIGNE
+    - general: # NE PAS REMPLIR CETTE LIGNE
+        Doxygen header:       0.5 # max 0.5, 
+        modularisation:         0 # max 2,  no tool func created
+        transfer_orig_image() (or equivalent):     1.5  # max 2.5, memory always leaked from do_read, as it allocates img_buf, should be freed after do_insert
+    - do_gbcollect(): # NE PAS REMPLIR CETTE LIGNE
+        open old image store:           1 # max 1, 
+        create new:                     5 # max 5, 
+        look for is_valid images:       2 # max 2, 
+        transfer original res:        2.5 # max 2.5, 
+        transfer small/thumb:           5 # max 5, 
+        move temp file to final:      1.5 # max 1.5, 
+- bonus extension 1 :      0        # max 3, (normal = 0), 
+- bonus extension 2 :      0        # max 3, (normal = 0), 
+- bonus extension 3 :      0        # max 3, (normal = 0), 
+- styleTA:                 0     # max 2, min -2, (normal = 0), 
+- bonus/malusTA:           0     # max 5, min -5, (normal = 0), 
+- style: 1        # max 2, min -2, (normal = 0), Bon code !
+- bonus/malus: 0  # max 5, min -5, (normal = 0),

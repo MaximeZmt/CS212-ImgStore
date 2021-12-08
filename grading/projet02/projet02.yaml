@@ -1,0 +1,106 @@
+- Makefile: 5           # max 5,
+- imgStore.h: # NE PAS REMPLIR CETTE LIGNE
+  - structures de données: # NE PAS REMPLIR CETTE LIGNE
+      MAX_MAX_FILES: 1      # max 1,
+      imgst_header: 3     # max 3,
+      imgst_metadata: 3.5     # max 3.5,
+      imgst_file: 2         # max 2,
+  - fonctions: # NE PAS REMPLIR CETTE LIGNE
+      print_header: 1        # max 1,
+      print_metadata: 0.5      # max 0.5,
+      do_list: 1             # max 1,
+      do_create: 1           # max 1,
+      do_delete: 1           # max 1,
+      do_read: 1             # max 1,
+      do_insert: 0.5           # max 1, img_buffer et img_id pourrait être const : -0.5
+      resolution_atoi: 0     # max 0.5, str pourrait être const : -0.5
+- tools.c: # NE PAS REMPLIR CETTE LIGNE
+  - print_X: # NE PAS REMPLIR CETTE LIGNE
+      print_header: 1         # max 1,
+      print_metadata: 1       # max 1,
+  - do_open: # NE PAS REMPLIR CETTE LIGNE
+     tests arguments: 1              # max 1,
+     open + test erreur: 2           # max 2,
+     read header + test erreur: 2    # max 2,
+     alloc. dyn. + test: 2           # max 2,
+     read metadata + test erreur: 2  # max 2,
+  - do_close: 2.25                      # max 2.5, Si imgst_file->file==NULL les metadata ne seront pas free : -0.25
+  - resolution_atoi: 2               # max 2,
+- imgst_list.c: # NE PAS REMPLIR CETTE LIGNE
+    affichage du header: 0.5        # max 0.5,
+    cas vide: 0.5                   # max 0.5,
+    parcours (boucle): 0.5          # max 0.5,
+    test is_valid: 1              # max 1,
+    print_metadata: 0.5             # max 0.5,
+- imgst_create.c: # NE PAS REMPLIR CETTE LIGNE
+    initialisation de version: 0.5  # max 0.5,
+    initialisation de num_file: 0.5 # max 0.5,
+    alloc dyn. metadat: 1.5         # max 1.5,
+    init champs is_valid: 1.5       # max 1.5,
+    open: 0.5                       # max 0.5,
+    test erreur open: 1.5           # max 1.5,
+    write header: 1.5               # max 1.5,
+    write metadata: 1.5             # max 1.5,
+    affichage bonne valeur: 0.5     # max 0.5,
+    gestions des erreurs: 1.5       # max 1.5,
+- imgst_delete.c: # NE PAS REMPLIR CETTE LIGNE
+    optimisation base vide: 1  # max 1,
+    recherche: 2               # max 2, Préférez strncmp à strcmp
+    récriture metadata: 2      # max 2,
+    correction du header: 1.5    # max 1.5,
+    récriture du header: 2     # max 2,
+    gestion erreurs: 1.5         # max 1.5,
+- image_content.h: 3       # max 3,
+- image_content.c: # NE PAS REMPLIR CETTE LIGNE
+  - shrink_value: 1.5     # max 1.5,
+  - lazily_resize: 4.75    # max 5.5, Il faudrait plutot tester NB_RES<=res que NB_RES<res : -0.25, aucun test n'est fait sur index : -0.5
+  - create_resized_img: # NE PAS REMPLIR CETTE LIGNE
+     modularisation: 1     # max 1,
+     lecture: 3            # max 3,
+     vips load: 2          # max 2,
+     vips resize+save: 5   # max 5,
+     écriture: 3           # max 3,
+     update: 2             # max 2,
+     libérations: 2        # max 2,
+  - get_resolution : 5   # max 5.5, L'image n'est pas unref a la fin de get_resolution : -0.5
+- imgStoreMgr.c: # NE PAS REMPLIR CETTE LIGNE
+  - projet01: # NE PAS REMPLIR CETTE LIGNE
+      help: 0.5                   # max 0.5,
+      do_list_cmd: 1.25            # max 1.25,
+      do_create_cmd: 5          # max 5,
+      do_delete_cmd: 2          # max 2,
+      VIPS init + shutdown: 1   # max 1,
+  - arguments: # NE PAS REMPLIR CETTE LIGNE
+      type command: 1                 # max 1,
+      struct command_mapping: 1       # max 1,
+      default values: 0.5               # max 0.5,
+      parsing args dans main(): 2.5     # max 2.5,
+  - do_read_cmd: # NE PAS REMPLIR CETTE LIGNE
+      modularisation: 0            # max 1, La fonction pourrait être modularisée : -1
+      création du nom: 1.5           # max 1.5,
+      écriture disque image: 2.5     # max 2.5,
+      core: 4                      # max 5, il faudrait appeler do_close avant de retourner ou en cas d'erreur à un moment: -0.5, Il faudrait vérifier le retour de fopen : -0.5
+  - do_insert_cmd: # NE PAS REMPLIR CETTE LIGNE
+      modularisation: 0              # max 1, La fonction pourrait être modularisée : -1
+      lecture disque image: 5        # max 5,
+      core: 1.5                        # max 2.5, Il faudrait vérifier le retour du calloc et le free quand c'est nécessaire, il faudrait appeler do_close en cas d'erreurs de la fonction: -0.5, il faut vérifier le retour de fread et de do_open(le traiter immédiatement en tout cas) : -0.5
+- dedup.h: 3                   # max 3, shacmp n'a pas forcément besoin d'être externalisée si elle n'est pas utilisée ailleurs
+- dedup.c: # NE PAS REMPLIR CETTE LIGNE
+    compare SHA: 1          # max 1,
+    dedup: 7                # max 7.5, Il ne faut pas s'arrêter dès que l'on trouve un sha correspondant (&& has_content_dup == 0 dans le if), il se pourrait qu'on trouve une metadata avec le même id plus loin : -0.5
+- imgst_insert.c: # NE PAS REMPLIR CETTE LIGNE
+    optimisation base pleine: 0.5    # max 0.5,
+    recherche place vide: 2        # max 2,
+    gestion dedup : 2              # max 2,
+    écriture image sur disque: 2.5   # max 2.5,
+    mise à jour metadata: 2.5        # max 2.5,
+    récriture du header: 1.5         # max 1.5,
+    gestion erreurs: 0.5             # max 1.5, Il faudrait vérifier le retour des fwrite : -1
+- imgst_read.c: # NE PAS REMPLIR CETTE LIGNE
+    optimisation base vide: 0        # max 1, Optimisation non implémentée : -1
+    recherche: 0.5                     # max 2, La condition d'arrêt la boucle for dans find_metadata_with_id n'est pas la bonne : elle devrait se baser sur max_files et pas num_files : -1, find_metadata_with_id devrait aussi vérifier que l'image est valide : -0.5
+    gestion lazy resize: 2           # max 2,
+    lecture image depuis disque: 2.5   # max 2.5,
+    gestion erreurs: 1               # max 1.5, Il faut free le buffer avant que la fonction ne retourne : -0.5
+- style: 1        # max 2, min -2, (normal = 0), Bon code !
+- bonus/malus: 0  # max 5, min -5, (normal = 0),

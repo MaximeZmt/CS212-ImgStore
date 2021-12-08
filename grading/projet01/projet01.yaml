@@ -1,0 +1,68 @@
+- Makefile: 4           # max 5, Pas besoin de LDLIBS pour produire un .o, imgStoreMgr.o devrait avoir besoin de VIPS_CFLAGS pour VIPS_INIT: -0.5, imgStoreMgr devrait avoir besoin de VIPS_LIBS : -0.5
+- imgStore.h: # NE PAS REMPLIR CETTE LIGNE
+  - structures de données: # NE PAS REMPLIR CETTE LIGNE
+      MAX_MAX_FILES: 1      # max 1,
+      imgst_header: 2.5     # max 3, imgst_name devrait faire une taille de MAX_IMGST_NAME+1 : -0.5
+      imgst_metadata: 3.5     # max 3.5,
+      imgst_file: 2         # max 2,
+  - fonctions: # NE PAS REMPLIR CETTE LIGNE
+      print_header: 1        # max 1,
+      print_metadata: 0.5      # max 0.5,
+      do_list: 0.5             # max 1, file devrait être passé en temps que pointeur sur une struct imgst_file const : -0.5
+      do_create: 1           # max 1,
+      do_delete: 1           # max 1,
+- tools.c: # NE PAS REMPLIR CETTE LIGNE
+  - print_X: # NE PAS REMPLIR CETTE LIGNE
+      print_header: 1         # max 1,
+      print_metadata: 1       # max 1,
+  - do_open: # NE PAS REMPLIR CETTE LIGNE
+     tests arguments: 1              # max 1,
+     open + test erreur: 2           # max 2,
+     read header + test erreur: 1.5    # max 2, En cas d'erreur sur le fread il faut appeler fclose : -0.5
+     alloc. dyn. + test: 1.5           # max 2, En cas d'erreur sur le calloc il faut appeler fclose : -0.5
+     read metadata + test erreur: 1.5  # max 2, En cas d'erreur sur le fread il faut appeler do_close (pour aussi free) : -0.5
+  - do_close: 2                      # max 2.5, Il faudrait traiter le cas des metadata a part : if imgst_file->metadata != NULL ... : -0.5
+- imgst_list.c: # NE PAS REMPLIR CETTE LIGNE
+    affichage du header: 0.5        # max 0.5,
+    cas vide: 0.5                   # max 0.5,
+    parcours (boucle): 0.5          # max 0.5,
+    test is_valid: 1              # max 1,
+    print_metadata: 0.5             # max 0.5,
+- imgst_create.c: # NE PAS REMPLIR CETTE LIGNE
+    initialisation de version: 0  # max 0.5, Le champs version n'est pas initialisé : -0.5
+    initialisation de num_file: 0 # max 0.5, Le champs num_file n'est pas initialisé : -0.5
+    alloc dyn. metadat: 1.5         # max 1.5,
+    init champs is_valid: 1.5       # max 1.5,
+    open: 0.5                       # max 0.5,
+    test erreur open: 1.5           # max 1.5,
+    write header: 1.5               # max 1.5,
+    write metadata: 1.5             # max 1.5,
+    affichage bonne valeur: 0.5     # max 0.5,
+    gestions des erreurs: 1       # max 1.5, Aucun test n'est effectué sur nb_written : -0.5
+- imgst_delete.c: # NE PAS REMPLIR CETTE LIGNE
+    optimisation base vide: 0  # max 1, Optimisation non implémentée : -1
+    recherche: 2               # max 2, Préférez strncmp à strcmp
+    récriture metadata: 2      # max 2,
+    correction du header: 1.5    # max 1.5,
+    récriture du header: 2     # max 2,
+    gestion erreurs: 0.5         # max 1.5, Les retours des deux fwrite ne sont pas vérifiés : -1
+- image_content.h: 2.5       # max 3, Pas d'entête doxygen : -0.5, pas besoin d'exporter shrink value qui est une fonction interne au module
+- image_content.c: # NE PAS REMPLIR CETTE LIGNE
+  - shrink_value: 1.5     # max 1.5,
+  - lazily_resize: 4.75    # max 5.5, Il faudrait plutot tester NB_RES<=res que NB_RES<res : -0.25, aucun test n'est fait sur index : -0.5
+  - create_resized_img: # NE PAS REMPLIR CETTE LIGNE
+     modularisation: 0.5     # max 1, lazy_resize pourrait être plus amplement modularisée : -0.5
+     lecture: 2.5            # max 3, Aucun test fait sur la valeur de retour de fread : -0.5
+     vips load: 1.5          # max 2, Aucun test fait sur la valeur de retour de vips_jpegload_buffer : -0.5
+     vips resize+save: 4.5   # max 5, Aucun test fait sur la valeur de retour de vips_jpegsave_buffer : -0.5
+     écriture: 3           # max 3,
+     update: 2             # max 2,
+     libérations: 1        # max 2, g_object_unref n'est jamais appelé : -1
+- imgStoreMgr.c: # NE PAS REMPLIR CETTE LIGNE
+      help: 0.5                   # max 0.5,
+      do_list_cmd: 1.25            # max 1.25,
+      do_create_cmd: 2          # max 2.5, En cas d'erreur il faut potentiellement free les metadatas allouées par do_create : -0.5
+      do_delete_cmd: 1.75          # max 2, Le cas ou le imgID est un string vide n'est pas traité : -0.25
+      VIPS init + shutdown: 0.75   # max 1, Si VIPS_INIT renvoi une erreur, il faut return ERR_IMGLIB; : -0.25
+- style: 0        # max 2, min -2, (normal = 0), Des macros comme  pourraient être utilisée EMPTY à certains endroits
+- bonus/malus: 0  # max 5, min -5, (normal = 0),
